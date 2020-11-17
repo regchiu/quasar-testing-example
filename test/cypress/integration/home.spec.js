@@ -1,21 +1,32 @@
-/// <reference path="cypress" />
-/// <reference path="../support/index.d.ts" />
-/// <reference types="Cypress" />
+/// <reference types='Cypress' />
+/// <reference path='../support/index.d.ts' />
 
 // Use `cy.dataCy` custom command for more robust tests
 // See https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements
 
 // ** This file is an example of how to write Cypress tests, you can safely delete it **
 
-// This test will pass when run against a clean Quasar project 
+// This test will pass when run against a clean Quasar project
 describe('Landing', () => {
   beforeEach(() => {
-    cy.visit('/');
-  });
+    cy.visit('/')
+  })
   it('.should() - assert that <title> is correct', () => {
-    cy.title().should('include', 'Quasar');
-  });
-});
+    cy.title().should('include', 'Quasar')
+  })
+  it('clicks the hamburger menu', () => {
+    cy.get('.q-btn__content > .material-icons').click()
+  })
+  it('clicking "Docs" navigates to a new url', () => {
+    cy.get('.q-btn__content > .material-icons').click()
+    cy.contains('Docs').click()
+  })
+  it('clicking "About" navigates to a new page', () => {
+    cy.get('.q-btn__content > .material-icons').click()
+    cy.contains('About').click()
+    cy.url().should('include', 'about')
+  })
+})
 
 // ** The following code is an example to show you how to write some tests for your home page **
 //

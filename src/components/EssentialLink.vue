@@ -2,8 +2,9 @@
   <q-item
     clickable
     tag="a"
-    target="_blank"
+    :target="link !== '#' ? '_blank' : '_self'"
     :href="link"
+    :to="to"
   >
     <q-item-section
       v-if="icon"
@@ -38,6 +39,11 @@ export default {
     link: {
       type: String,
       default: '#'
+    },
+
+    to: {
+      type: [String, Object],
+      default: ''
     },
 
     icon: {
